@@ -28,6 +28,8 @@ class ControllerLogin extends BaseController
         ];
         if (Auth::Attempt($data)) {
             return redirect('viewBarang');
+        } else {
+            return redirect('login')->with('error', 'Email atau password salah!!!');
         }
     }
     public function registrasi()

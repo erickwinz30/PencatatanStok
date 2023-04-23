@@ -137,6 +137,10 @@
                                     </div>
 
                                 </form>
+                                <br>
+                                @if (session('error'))
+                                    <div class="alert alert-danger text-center">{{ session('error') }}</div>
+                                @endif
                             </div>
                         </div>
                     </div>
