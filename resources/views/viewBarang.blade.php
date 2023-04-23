@@ -92,6 +92,11 @@
 
         border-radius: 20px;
     }
+
+    h1 {
+        font-weight: bold;
+        font-size: 32px;
+    }
 </style>
 
 <body>
@@ -110,11 +115,14 @@
     <!-- End of NavBar-->
 
     <main>
-        <h2>List Barang</h2>
+        <h1>List Barang</h1>
+        <br>
+        @if (session('error'))
+            <div class="alert alert-danger text-center">{{ session('error') }}</div>
+        @endif
         <br>
         <button type="button" class="btn btn-warning" id="tambah"
             onclick="window.location.href='{{ url()->current() }}/tambahBaru';">Tambah Barang Baru</button>
-        <br>
         <br>
         <div class="tabelGudang">
             <table border="1" class="table table-striped" style="width: 100%" id="tabel_barang">
@@ -139,7 +147,8 @@
                                 <a href="{{ url()->current() }}/barangMasuk/{{ $row->id_barang }}"><button
                                         type="button" class="btn btn-warning" id="button_tambah">Barang
                                         Masuk</button></a>
-                                <a href="{{ url()->current() }}/barangKeluar/{{ $row->id_barang }}"><button type="button" class="btn btn-danger" id="button_keluar">Keluar</button></a>
+                                <a href="{{ url()->current() }}/barangKeluar/{{ $row->id_barang }}"><button
+                                        type="button" class="btn btn-danger" id="button_keluar">Keluar</button></a>
                             </td>
                         </tr>
                     @endforeach
@@ -159,8 +168,6 @@
         $(document).ready(function() {
             $('#tabel_barang').DataTable();
         });
-
-        
     </script>
 </body>
 
