@@ -1,0 +1,26 @@
+<?php
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
+
+class ModelLog extends Model {
+    public function readLogMasuk() {
+        $log = DB::table('log_barang')->where('status_barang', 'Baru')->orWhere('status_barang', 'Retur')->orderBy('tanggal_log', 'desc')->get();
+        return $log;
+    }
+
+    public function readLogKeluar() {
+        $log = DB::table('log_barang')->where('status_barang', 'Keluar')->orderBy('tanggal_log', 'desc')->get();
+        return $log;
+    }
+
+    public function simpanLogBaru($x) {
+        $barang = DB::table('log_barang')->insert([
+            'id_barang'=>$x->id_barang,
+            'jumlah_barang'=>$x->jumlah_barang,
+            'status_barang'=>'Baru',
+            'keterangan'=>$x->keterangan,
+        ]);
+    }
+}
