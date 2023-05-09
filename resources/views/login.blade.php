@@ -110,6 +110,9 @@
 
                                 <form action="{{ url('actionlogin') }}" method="post">
                                     {{ csrf_field() }}
+                                    @if (session('error'))
+                                        <div class="alert alert-danger text-center">{{ session('error') }}</div>
+                                    @endif
                                     <div class="form-outline form-white mb-4">
                                         <label class="form-label" for="typeEmailX">Email</label>
                                         <input type="email" name='email' class="form-control form-control-lg"
@@ -137,10 +140,6 @@
                                     </div>
 
                                 </form>
-                                <br>
-                                @if (session('error'))
-                                    <div class="alert alert-danger text-center">{{ session('error') }}</div>
-                                @endif
                             </div>
                         </div>
                     </div>
