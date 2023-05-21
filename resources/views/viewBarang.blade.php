@@ -73,6 +73,22 @@
         color: black;
     }
 
+    .nav-list ul li a.logout {
+        text-decoration: none;
+        font-size: 1.05rem;
+        font-weight: 500;
+        color: black;
+        padding: .5rem 1.5rem;
+        border-radius: 999px;
+        transition: all .2s ease-in-out;
+        background-color: red;
+    }
+
+    .nav-list ul li a.logout:hover {
+        background-color: blue;
+        color: black;
+    }
+
     main {
         max-width: 1200px;
         width: 100%;
@@ -109,6 +125,7 @@
                 <li><a href="http://localhost/bfitgudang/viewBarang/">Barang</a></li>
                 <li><a href="http://localhost/bfitgudang/viewLogMasuk/">Baru / Retur</a></li>
                 <li><a href="http://localhost/bfitgudang/viewLogKeluar/">Keluar</a></li>
+                <li><a href="http://localhost/bfitgudang/login/" class="logout">Logout</a></li>
             </ul>
         </nav>
     </header>
