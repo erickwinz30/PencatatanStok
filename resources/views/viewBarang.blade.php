@@ -161,6 +161,8 @@
                             <td>{{ $row->jumlah_barang }}</td>
                             <td>
                                 {{-- <a href="{{ url()->current() }}/tambahBarang/{{ $row->id_barang }}"> --}}
+                                <a href="{{ url()->current() }}/updateBarang/{{ $row->id_barang }}"><button
+                                        type="button" class="btn btn-primary" id="button_tambah">Edit</button></a>
                                 <a href="{{ url()->current() }}/barangMasuk/{{ $row->id_barang }}"><button
                                         type="button" class="btn btn-warning" id="button_tambah">Barang
                                         Masuk</button></a>

@@ -24,6 +24,12 @@ class ControllerBarang extends BaseController
         return view('viewBarang', ['barang' => $barang]);
     }
 
+    public function editBarang($id_barang) {
+        $xx = new ModelBarang();
+        $barang = $xx->getIdBarang($id_barang);
+        return view('viewUpdateBarang', ['barang' => $barang]);
+    }
+
     public function editBarangMasuk($id_barang)
     {
         $xx = new ModelBarang();
@@ -54,6 +60,10 @@ class ControllerBarang extends BaseController
             'id_barang' => 'required|min:2|max:8',
             'nama_barang' => 'required|min:2|max:50',
             'berat_barang' => 'required|numeric',
+            'lead_time' => 'required|numeric',
+            'demand' => 'required|numeric',
+            'penjualan_tertinggi' => 'required|numeric',
+            'lead_time_terlama' => 'required|numeric',
             'jumlah_barang' => 'required|numeric',
             'keterangan' => 'required|min:2|max:100',
         ]);
@@ -62,6 +72,21 @@ class ControllerBarang extends BaseController
         $xx->simpanBaru($x);
         $xx2 = new ModelLog();
         $xx2->simpanLogBaru($x);
+        return redirect('/viewBarang');
+    }
+
+    public function updateBarang(Request $x) {
+        $validatedData = $x->validate([
+            'id_barang' => 'required|min:2|max:8',
+            'nama_barang' => 'required|min:2|max:50',
+            'berat_barang' => 'required|numeric',
+            'lead_time' => 'required|numeric',
+            'demand' => 'required|numeric',
+            'penjualan_tertinggi' => 'required|numeric',
+            'lead_time_terlama' => 'required|numeric',
+        ]);
+        $xx = new ModelBarang();
+        $xx->updateBarang($validatedData);
         return redirect('/viewBarang');
     }
 

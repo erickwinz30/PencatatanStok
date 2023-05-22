@@ -20,6 +20,17 @@ class ModelBarang extends Model
         return $barang;
     }
 
+    public function updateBarang($data) {
+        $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
+            'nama_barang' => $data['nama_barang'],
+            'berat_barang' => $data['berat_barang'],
+            'lead_time' => $data['lead_time'],
+            'demand' => $data['demand'],
+            'penjualan_tertinggi' => $data['penjualan_tertinggi'],
+            'lead_time_terlama' => $data['lead_time_terlama'],
+        ]);
+    }
+
     public function fungsi_ROP()
     {
         $barang = DB::table('barang')->get();
@@ -57,7 +68,11 @@ class ModelBarang extends Model
             'id_barang' => $x->id_barang,
             'nama_barang' => $x->nama_barang,
             'berat_barang' => $x->berat_barang,
-            'jumlah_barang' => $x->jumlah_barang
+            'lead_time' => $x->lead_time,
+            'demand' => $x->demand,
+            'penjualan_tertinggi' => $x->penjualan_tertinggi,
+            'lead_time_terlama' => $x->lead_time_terlama,
+            'jumlah_barang' => $x->jumlah_barang,
         ]);
     }
 

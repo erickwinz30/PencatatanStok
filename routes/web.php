@@ -25,6 +25,8 @@ Route::get('viewBarang/tambahBaru', [ControllerBarang::class, 'insertBarangBaru'
 Route::post('viewBarang/tambahBaru/simpan', [ControllerBarang::class, 'tambahBaru'])->middleware('checkRole:gudang');
 
 //edit
+Route::get('viewBarang/updateBarang/{id_barang}', [ControllerBarang::class, 'editBarang'])->middleware('checkRole:gudang');
+Route::post('viewBarang/updateBarang/edit', [ControllerBarang::class, 'updateBarang'])->middleware('checkRole:gudang');
 Route::get('viewBarang/barangMasuk/{id_barang}', [ControllerBarang::class, 'editBarangMasuk'])->middleware('checkRole:gudang');
 Route::post('viewBarang/barangMasuk/edit', [ControllerBarang::class, 'updateBarangMasuk'])->middleware('checkRole:gudang');
 Route::get('viewBarang/barangKeluar/{id_barang}', [ControllerBarang::class, 'editBarangKeluar'])->middleware('checkRole:gudang');
