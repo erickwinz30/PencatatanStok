@@ -12,7 +12,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css"
         rel="stylesheet" />
     <link
-        href="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/r-2.4.1/sc-2.1.1/sb-1.4.2/sp-2.1.2/datatables.min.css"
+        href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/date-1.4.1/fc-4.2.2/fh-3.3.2/kt-2.9.0/r-2.4.1/rg-1.3.1/rr-1.3.3/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.css"
         rel="stylesheet" />
 
 </head>
@@ -104,7 +104,7 @@
     main .tabelGudang {
         max-width: 1000px;
         width: 100%;
-        padding: 0rem 4rem;
+        padding: 0rem 1rem;
 
         border-radius: 20px;
     }
@@ -134,9 +134,6 @@
     <main>
         <h1>List Barang</h1>
         <br>
-        @if (session('error'))
-            <div class="alert alert-danger text-center">{{ session('error') }}</div>
-        @endif
         <br>
         <button type="button" class="btn btn-warning" id="tambah"
             onclick="window.location.href='{{ url()->current() }}/tambahBaru';">Tambah Barang Baru</button>
@@ -149,6 +146,7 @@
                         <th scope="col">Nama Barang</th>
                         <th scope="col">Berat Barang</th>
                         <th scope="col">Jumlah</th>
+                        <th scope="col">Reorder Point</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -159,6 +157,7 @@
                             <td>{{ $row->nama_barang }}</td>
                             <td>{{ $row->berat_barang }} kg</td>
                             <td>{{ $row->jumlah_barang }}</td>
+                            <td>{{ $row->reorder_point }}</td>
                             <td>
                                 {{-- <a href="{{ url()->current() }}/tambahBarang/{{ $row->id_barang }}"> --}}
                                 <a href="{{ url()->current() }}/updateBarang/{{ $row->id_barang }}"><button
@@ -180,7 +179,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
     <script
-        src="https://cdn.datatables.net/v/dt/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/r-2.4.1/sc-2.1.1/sb-1.4.2/sp-2.1.2/datatables.min.js">
+        src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/date-1.4.1/fc-4.2.2/fh-3.3.2/kt-2.9.0/r-2.4.1/rg-1.3.1/rr-1.3.3/sc-2.1.1/sb-1.4.2/sp-2.1.2/sl-1.6.2/sr-1.2.2/datatables.min.js">
     </script>
 
     <script type="text/javascript">

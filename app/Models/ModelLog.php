@@ -12,7 +12,7 @@ class ModelLog extends Model {
     }
 
     public function readLogKeluar() {
-        $log = DB::table('log_barang')->where('status_barang', 'Keluar')->orderBy('tanggal_log', 'desc')->get();
+        $log = DB::table('log_barang')->where('status_barang', 'Terjual')->orWhere('status_barang', 'Cabang')->orderBy('tanggal_log', 'desc')->get();
         return $log;
     }
 

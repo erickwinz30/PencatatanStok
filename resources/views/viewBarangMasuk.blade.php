@@ -121,16 +121,16 @@
 
     <main>
 
-        <div class="container py-5 h-100">
+        <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-danger text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5">
 
-                            <div class="mb-md-5 mt-md-4 pb-5">
+                            <div>
 
                                 <h2 class="fw-bold mb-2 text-uppercase">INPUT BARANG</h2>
-                                <p class="text-white-50 mb-5">Masukkan data barang masuk</p>
+                                <p class="text-white-50 mb-4">Masukkan data barang masuk</p>
 
                                 @foreach ($barang as $row)
                                     <form action="/bfitgudang/viewBarang/barangMasuk/edit" method="POST">
@@ -146,11 +146,6 @@
                                                 ditambahkan</label>
                                             <input type="number" name='jumlah_barang'
                                                 class="form-control form-control-lg" />
-                                        </div>
-
-                                        <div class="form-outline form-white mb-4">
-                                            <label class="form-label" for="typePasswordX">Berat<p class="text-white-50">Biarkan jika tidak perlu</p></label>
-                                            <input type="input" name='berat_barang' class="form-control form-control-lg" value="{{ $row->berat_barang }}" />
                                         </div>
 
                                         <div class="form-outline form-white mb-4">

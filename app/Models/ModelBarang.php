@@ -12,41 +12,60 @@ class ModelBarang extends Model
 
     public function readBarang()
     {
-        // $ROP = 11;
-        // $less_barang = DB::table('barang')->select('select id_barang where jumlah_barang <' + $ROP + ';');
-        $this->fungsi_ROP();
-
         $barang = DB::table('barang')->get();
         return $barang;
     }
 
-    public function updateBarang($data) {
-        $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
-            'nama_barang' => $data['nama_barang'],
-            'berat_barang' => $data['berat_barang'],
-            'lead_time' => $data['lead_time'],
-            'demand' => $data['demand'],
-            'penjualan_tertinggi' => $data['penjualan_tertinggi'],
-            'lead_time_terlama' => $data['lead_time_terlama'],
-        ]);
-    }
-
-    public function fungsi_ROP()
+    public function updateBarang($data)
     {
-        $barang = DB::table('barang')->get();
-        $error_items = [];
+        $lead_time = isset($data['lead_time']) ? $data['lead_time'] : null;
+        $demand = isset($data['demand']) ? $data['demand'] : null;
+        $penjualan_tertinggi = isset($data['penjualan_tertinggi']) ? $data['penjualan_tertinggi'] : null;
+        $lead_time_terlama = isset($data['lead_time_terlama']) ? $data['lead_time_terlama'] : null;
 
-        foreach ($barang as $item) {
-            if ($item->jumlah_barang < 11) {
-                $error_items[] = $item->id_barang;
-            }
-        }
+        if ($lead_time === null || $demand === null || $penjualan_tertinggi === null || $lead_time_terlama === null) {
+            $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
+                'nama_barang' => $data['nama_barang'],
+                'berat_barang' => $data['berat_barang'],
+                'lead_time' => $data['lead_time'],
+                'demand' => $data['demand'],
+                'penjualan_tertinggi' => $data['penjualan_tertinggi'],
+                'lead_time_terlama' => $data['lead_time_terlama'],
+                'reorder_point' => '-',
+            ]);
+        } else {
+            $lead_time_demand = $lead_time * $demand;
+            $safety_stock = ($penjualan_tertinggi * $lead_time_terlama) - ($demand * $lead_time);
+            $reorder_point = $lead_time_demand + $safety_stock;
 
-        if (!empty($error_items)) {
-            $error_message = 'Jumlah barang ' . implode(', ', $error_items) . ' kurang dari 10!';
-            return redirect('viewBarang')->with('error', $error_message);
+            $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
+                'nama_barang' => $data['nama_barang'],
+                'berat_barang' => $data['berat_barang'],
+                'lead_time' => $data['lead_time'],
+                'demand' => $data['demand'],
+                'penjualan_tertinggi' => $data['penjualan_tertinggi'],
+                'lead_time_terlama' => $data['lead_time_terlama'],
+                'reorder_point' => $reorder_point,
+            ]);
         }
     }
+
+    // public function fungsi_ROP()
+    // {
+    //     $barang = DB::table('barang')->get();
+    //     $error_items = [];
+
+    //     foreach ($barang as $item) {
+    //         if ($item->jumlah_barang < 11) {
+    //             $error_items[] = $item->id_barang;
+    //         }
+    //     }
+
+    //     if (!empty($error_items)) {
+    //         $error_message = 'Jumlah barang ' . implode(', ', $error_items) . ' kurang dari 10!';
+    //         return redirect('viewBarang')->with('error', $error_message);
+    //     }
+    // }
 
     public function getIdBarang($id_Barang)
     {
@@ -64,16 +83,40 @@ class ModelBarang extends Model
 
     public function simpanBaru($x)
     {
-        $barang = DB::table('barang')->insert([
-            'id_barang' => $x->id_barang,
-            'nama_barang' => $x->nama_barang,
-            'berat_barang' => $x->berat_barang,
-            'lead_time' => $x->lead_time,
-            'demand' => $x->demand,
-            'penjualan_tertinggi' => $x->penjualan_tertinggi,
-            'lead_time_terlama' => $x->lead_time_terlama,
-            'jumlah_barang' => $x->jumlah_barang,
-        ]);
+        $lead_time = $x['lead_time'];
+        $demand = $x['demand'];
+        $penjualan_tertinggi = $x['penjualan_tertinggi'];
+        $lead_time_terlama = $x['lead_time_terlama'];
+
+        if ($lead_time === null || $demand === null || $penjualan_tertinggi === null || $lead_time_terlama === null) {
+            $barang = DB::table('barang')->insert([
+                'id_barang' => $x->id_barang,
+                'nama_barang' => $x->nama_barang,
+                'berat_barang' => $x->berat_barang,
+                'lead_time' => $x->lead_time,
+                'demand' => $x->demand,
+                'penjualan_tertinggi' => $x->penjualan_tertinggi,
+                'lead_time_terlama' => $x->lead_time_terlama,
+                'jumlah_barang' => $x->jumlah_barang,
+                'reorder_point' => '-',
+            ]);
+        } else {
+            $lead_time_demand = $lead_time * $demand;
+            $safety_stock = ($penjualan_tertinggi * $lead_time_terlama) - ($demand * $lead_time);
+            $reorder_point = $lead_time_demand + $safety_stock;
+
+            $barang = DB::table('barang')->insert([
+                'id_barang' => $x->id_barang,
+                'nama_barang' => $x->nama_barang,
+                'berat_barang' => $x->berat_barang,
+                'jumlah_barang' => $x->jumlah_barang,
+                'lead_time' => $x->lead_time,
+                'demand' => $x->demand,
+                'penjualan_tertinggi' => $x->penjualan_tertinggi,
+                'lead_time_terlama' => $x->lead_time_terlama,
+                'reorder_point' => $reorder_point,
+            ]);
+        }
     }
 
     public function updateBarangMasuk($data)
@@ -107,14 +150,13 @@ class ModelBarang extends Model
         $hasil = $jumlah_barang - $jumlah;
 
         $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
-            'berat_barang' => $data['berat_barang'],
             'jumlah_barang' => $hasil,
         ]);
 
         $log_barang = DB::table('log_barang')->where('id_barang', $data['id_barang'])->insert([
             'id_barang' => $data['id_barang'],
             'jumlah_barang' => $data['jumlah_barang'],
-            'status_barang' => 'Keluar',
+            'status_barang' => $data['status_barang'],
             'tanggal_log' => $currentDate,
             'keterangan' => $data['keterangan'],
         ]);

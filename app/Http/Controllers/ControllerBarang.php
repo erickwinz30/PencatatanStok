@@ -60,10 +60,10 @@ class ControllerBarang extends BaseController
             'id_barang' => 'required|min:2|max:8',
             'nama_barang' => 'required|min:2|max:50',
             'berat_barang' => 'required|numeric',
-            'lead_time' => 'required|numeric',
-            'demand' => 'required|numeric',
-            'penjualan_tertinggi' => 'required|numeric',
-            'lead_time_terlama' => 'required|numeric',
+            'lead_time',
+            'demand',
+            'penjualan_tertinggi',
+            'lead_time_terlama',
             'jumlah_barang' => 'required|numeric',
             'keterangan' => 'required|min:2|max:100',
         ]);
@@ -80,10 +80,10 @@ class ControllerBarang extends BaseController
             'id_barang' => 'required|min:2|max:8',
             'nama_barang' => 'required|min:2|max:50',
             'berat_barang' => 'required|numeric',
-            'lead_time' => 'required|numeric',
-            'demand' => 'required|numeric',
-            'penjualan_tertinggi' => 'required|numeric',
-            'lead_time_terlama' => 'required|numeric',
+            'lead_time' => '',
+            'demand' => '',
+            'penjualan_tertinggi' => '',
+            'lead_time_terlama' => '',
         ]);
         $xx = new ModelBarang();
         $xx->updateBarang($validatedData);
@@ -97,7 +97,6 @@ class ControllerBarang extends BaseController
         $validatedData = $x->validate([
             'id_barang' => 'required|min:2|max:8',
             'jumlah_barang' => 'required|numeric',
-            'berat_barang' => 'required|numeric',
             'status_barang' => 'required|min:2|max:8',
             'keterangan' => 'required|min:2|max:100',
         ]);
@@ -113,7 +112,7 @@ class ControllerBarang extends BaseController
         $validatedData = $x->validate([
             'id_barang' => 'required|min:2|max:8',
             'jumlah_barang' => 'required|numeric',
-            'berat_barang' => 'required|numeric',
+            'status_barang' => 'required|min:2|max:8',
             'keterangan' => 'required|min:2|max:100',
         ]);
         $xx = new ModelBarang();

@@ -121,16 +121,16 @@
 
     <main>
 
-        <div class="container py-5 h-100">
+        <div class="container h-100">
             <div class="row d-flex justify-content-center align-items-center h-100">
                 <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                     <div class="card bg-danger text-white" style="border-radius: 1rem;">
                         <div class="card-body p-5">
 
-                            <div class="mb-md-5 mt-md-4 pb-5">
+                            <div>
 
                                 <h2 class="fw-bold mb-2 text-uppercase">UPDATE BARANG</h2>
-                                <p class="text-white-50 mb-5">Masukkan data barang yang akan diupdate</p>
+                                <p class="text-white-50 mb-4">Masukkan data barang yang akan diupdate</p>
 
                                 @foreach ($barang as $row)
                                     <form action="/bfitgudang/viewBarang/updateBarang/edit" method="post">
