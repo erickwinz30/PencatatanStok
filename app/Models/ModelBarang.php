@@ -49,24 +49,7 @@ class ModelBarang extends Model
             ]);
         }
     }
-
-    // public function fungsi_ROP()
-    // {
-    //     $barang = DB::table('barang')->get();
-    //     $error_items = [];
-
-    //     foreach ($barang as $item) {
-    //         if ($item->jumlah_barang < 11) {
-    //             $error_items[] = $item->id_barang;
-    //         }
-    //     }
-
-    //     if (!empty($error_items)) {
-    //         $error_message = 'Jumlah barang ' . implode(', ', $error_items) . ' kurang dari 10!';
-    //         return redirect('viewBarang')->with('error', $error_message);
-    //     }
-    // }
-
+    
     public function getIdBarang($id_Barang)
     {
         $id_barang = DB::table('barang')->where('id_barang', $id_Barang)->get();

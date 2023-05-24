@@ -114,7 +114,7 @@
 <body>
     <header class="navbar-container">
         <div class="logo">
-            <img src="http://localhost/program/img/logo-bfit.png" alt="Bfit Indonesia">
+            <img src="{{ asset('public/img/logo-bfit.png') }}" alt="Bfit Indonesia">
         </div>
         <nav class="nav-list">
             <ul>
