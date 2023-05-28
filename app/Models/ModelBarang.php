@@ -111,16 +111,7 @@ class ModelBarang extends Model
         $hasil = $jumlah_barang + $jumlah;
 
         $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
-            'berat_barang' => $data['berat_barang'],
             'jumlah_barang' => $hasil,
-        ]);
-
-        $log_barang = DB::table('log_barang')->where('id_barang', $data['id_barang'])->insert([
-            'id_barang' => $data['id_barang'],
-            'jumlah_barang' => $data['jumlah_barang'],
-            'status_barang' => $data['status_barang'],
-            'tanggal_log' => $currentDate,
-            'keterangan' => $data['keterangan'],
         ]);
     }
 
@@ -134,14 +125,6 @@ class ModelBarang extends Model
 
         $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
             'jumlah_barang' => $hasil,
-        ]);
-
-        $log_barang = DB::table('log_barang')->where('id_barang', $data['id_barang'])->insert([
-            'id_barang' => $data['id_barang'],
-            'jumlah_barang' => $data['jumlah_barang'],
-            'status_barang' => $data['status_barang'],
-            'tanggal_log' => $currentDate,
-            'keterangan' => $data['keterangan'],
         ]);
     }
 }

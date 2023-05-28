@@ -102,6 +102,8 @@ class ControllerBarang extends BaseController
         ]);
         $xx = new ModelBarang();
         $xx->updateBarangMasuk($validatedData);
+        $xx2 = new ModelLog();
+        $xx2->updateLogBarangMasuk($validatedData);
         return redirect('/viewBarang');
     }
 
@@ -117,6 +119,8 @@ class ControllerBarang extends BaseController
         ]);
         $xx = new ModelBarang();
         $xx->updateBarangKeluar($validatedData);
+        $xx2 = new ModelLog();
+        $xx2->updateLogBarangKeluar($validatedData);
         return redirect('/viewBarang');
     }
 }

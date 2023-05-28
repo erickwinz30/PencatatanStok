@@ -27,4 +27,28 @@ class ModelLog extends Model {
             'keterangan'=>$x->keterangan,
         ]);
     }
+
+    public function updateLogBarangMasuk($data) {
+        $currentDate = Carbon::now('Asia/Jakarta');
+
+        $log_barang = DB::table('log_barang')->where('id_barang', $data['id_barang'])->insert([
+            'id_barang' => $data['id_barang'],
+            'jumlah_barang' => $data['jumlah_barang'],
+            'status_barang' => $data['status_barang'],
+            'tanggal_log' => $currentDate,
+            'keterangan' => $data['keterangan'],
+        ]);
+    }
+
+    public function updateLogBarangKeluar($data) {
+        $currentDate = Carbon::now('Asia/Jakarta');
+        
+        $log_barang = DB::table('log_barang')->where('id_barang', $data['id_barang'])->insert([
+            'id_barang' => $data['id_barang'],
+            'jumlah_barang' => $data['jumlah_barang'],
+            'status_barang' => $data['status_barang'],
+            'tanggal_log' => $currentDate,
+            'keterangan' => $data['keterangan'],
+        ]);
+    }
 }
