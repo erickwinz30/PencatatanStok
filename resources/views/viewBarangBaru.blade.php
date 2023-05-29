@@ -156,18 +156,18 @@
                                             class="form-control form-control-lg"/>
                                     </div>
 
-                                    <div class="form-outline form-white mb-4">
+                                    {{-- <div class="form-outline form-white mb-4">
                                         <label class="form-label" for="typePasswordX">Rata - rata penjualan (satuan
                                             hari)</label>
                                         <input type="input" name='demand' class="form-control form-control-lg"/>
-                                    </div>
+                                    </div> --}}
 
-                                    <div class="form-outline form-white mb-4">
+                                    {{-- <div class="form-outline form-white mb-4">
                                         <label class="form-label" for="typePasswordX">Penjualan harian
                                             tertinggi</label>
                                         <input type="input" name='penjualan_tertinggi'
                                             class="form-control form-control-lg"/>
-                                    </div>
+                                    </div> --}}
 
                                     <div class="form-outline form-white mb-4">
                                         <label class="form-label" for="typePasswordX">Lead Time terlama (satuan

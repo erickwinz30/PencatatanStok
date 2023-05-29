@@ -134,7 +134,6 @@
     <main>
         <h1>List Barang</h1>
         <br>
-        <br>
         <button type="button" class="btn btn-warning" id="tambah"
             onclick="window.location.href='{{ url()->current() }}/tambahBaru';">Tambah Barang Baru</button>
         <br>

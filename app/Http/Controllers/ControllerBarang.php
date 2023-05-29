@@ -61,8 +61,6 @@ class ControllerBarang extends BaseController
             'nama_barang' => 'required|min:2|max:50',
             'berat_barang' => 'required|numeric',
             'lead_time',
-            'demand',
-            'penjualan_tertinggi',
             'lead_time_terlama',
             'jumlah_barang' => 'required|numeric',
             'keterangan' => 'required|min:2|max:100',
@@ -80,10 +78,8 @@ class ControllerBarang extends BaseController
             'id_barang' => 'required|min:2|max:8',
             'nama_barang' => 'required|min:2|max:50',
             'berat_barang' => 'required|numeric',
-            'lead_time' => '',
-            'demand' => '',
-            'penjualan_tertinggi' => '',
-            'lead_time_terlama' => '',
+            'lead_time' => 'required|numeric',
+            'lead_time_terlama' => 'required|numeric',
         ]);
         $xx = new ModelBarang();
         $xx->updateBarang($validatedData);
@@ -117,10 +113,11 @@ class ControllerBarang extends BaseController
             'status_barang' => 'required|min:2|max:8',
             'keterangan' => 'required|min:2|max:100',
         ]);
-        $xx = new ModelBarang();
-        $xx->updateBarangKeluar($validatedData);
+
         $xx2 = new ModelLog();
         $xx2->updateLogBarangKeluar($validatedData);
+        $xx = new ModelBarang();
+        $xx->updateBarangKeluar($validatedData);
         return redirect('/viewBarang');
     }
 }
