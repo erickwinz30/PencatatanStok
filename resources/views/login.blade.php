@@ -90,7 +90,7 @@
 <body>
     <header class="navbar-container">
         <div class="logo">
-            <img src="http://localhost/program/img/logo-bfit.png" alt="Bfit Indonesia">
+            <img src="{{ asset('img/logo-bfit.png') }}" alt="Bfit Indonesia">
         </div>
     </header>
     <!-- End of NavBar-->
@@ -133,7 +133,7 @@
                                     </div>
                                     <div class="col text-center">
                                         <br>
-                                        <a href="http://localhost/bfitgudang/registrasi"
+                                        <a href="registrasi"
                                             class="btn btn-outline-light btn-lg px-5" name="register">Register</a>
                                     </div>
 

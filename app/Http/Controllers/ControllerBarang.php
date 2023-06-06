@@ -59,6 +59,7 @@ class ControllerBarang extends BaseController
         $this->validate($x, [
             'id_barang' => 'required|min:2|max:8',
             'nama_barang' => 'required|min:2|max:50',
+            'supplier_barang' => 'required|min:2|max:50',
             'berat_barang' => 'required|numeric',
             'lead_time',
             'lead_time_terlama',
@@ -77,6 +78,7 @@ class ControllerBarang extends BaseController
         $validatedData = $x->validate([
             'id_barang' => 'required|min:2|max:8',
             'nama_barang' => 'required|min:2|max:50',
+            'supplier_barang' => 'required|min:2|max:50',
             'berat_barang' => 'required|numeric',
             'lead_time' => 'required|numeric',
             'lead_time_terlama' => 'required|numeric',

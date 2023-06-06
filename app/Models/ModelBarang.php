@@ -32,10 +32,9 @@ class ModelBarang extends Model
         ->select(DB::raw('AVG(total_penjualan_harian) AS rata_rata_penjualan_harian'))
         ->first();
 
-        if ($result_demand) {
+        if ($result_demand !== null && $result_demand !== 0) {
             $rata_penjualan = round($result_demand->rata_rata_penjualan_harian, 2);
             $demand = $rata_penjualan;
-            Log::info($demand);
         } else {
             $demand = null; // Atau nilai default yang sesuai jika hasil seleksi tidak ada
         }
@@ -52,23 +51,39 @@ class ModelBarang extends Model
         ->mergeBindings($subquery)
         ->select(DB::raw('MAX(total_penjualan_harian) AS max_penjualan_harian'))
         ->first();
-        if ($result_penjualan_tertinggi) {
+
+        if ($result_penjualan_tertinggi !== null && $result_penjualan_tertinggi !== 0 ) {
             $highest_penjualan = round($result_penjualan_tertinggi->max_penjualan_harian, 2);
             $penjualan_tertinggi = $highest_penjualan;
-            Log::info($penjualan_tertinggi);
         } else {
             $penjualan_tertinggi = null; // Atau nilai default yang sesuai jika hasil seleksi tidak ada
         }
 
         $lead_time_terlama = isset($data['lead_time_terlama']) ? $data['lead_time_terlama'] : null;
+        Log::info($lead_time);
+        Log::info($demand);
+        Log::info($penjualan_tertinggi);
+        Log::info($lead_time_terlama);
 
-        if ($lead_time === null || $demand === null || $penjualan_tertinggi === null || $lead_time_terlama === null) {
+        if ($demand == null || $penjualan_tertinggi == null) {
             $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
                 'nama_barang' => $data['nama_barang'],
+                'supplier_barang' => $data['supplier_barang'],
                 'berat_barang' => $data['berat_barang'],
                 'lead_time' => $data['lead_time'],
-                'demand' => $demand,
-                'penjualan_tertinggi' => $penjualan_tertinggi,
+                'demand' => null,
+                'penjualan_tertinggi' => null,
+                'lead_time_terlama' => $data['lead_time_terlama'],
+                'reorder_point' => '50',
+            ]);
+        } else if ($demand == 0 || $penjualan_tertinggi == 0) {
+            $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
+                'nama_barang' => $data['nama_barang'],
+                'supplier_barang' => $data['supplier_barang'],
+                'berat_barang' => $data['berat_barang'],
+                'lead_time' => $data['lead_time'],
+                'demand' => null,
+                'penjualan_tertinggi' => null,
                 'lead_time_terlama' => $data['lead_time_terlama'],
                 'reorder_point' => '50',
             ]);
@@ -79,6 +94,7 @@ class ModelBarang extends Model
 
             $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
                 'nama_barang' => $data['nama_barang'],
+                'supplier_barang' => $data['supplier_barang'],
                 'berat_barang' => $data['berat_barang'],
                 'lead_time' => $data['lead_time'],
                 'demand' => $demand,
@@ -112,6 +128,7 @@ class ModelBarang extends Model
         $barang = DB::table('barang')->insert([
             'id_barang' => $x->id_barang,
             'nama_barang' => $x->nama_barang,
+            'supplier_barang'=> $x->supplier_barang,
             'berat_barang' => $x->berat_barang,
             'lead_time' => $x->lead_time,
             'demand' => null,
@@ -212,8 +229,8 @@ class ModelBarang extends Model
             ]);
         }
 
-        $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
-            'jumlah_barang' => $hasil,
-        ]);
+        // $barang = DB::table('barang')->where('id_barang', $data['id_barang'])->update([
+        //     'jumlah_barang' => $hasil,
+        // ]);
     }
 }

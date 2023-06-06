@@ -114,14 +114,14 @@
 <body>
     <header class="navbar-container">
         <div class="logo">
-            <img src="{{ asset('public/img/logo-bfit.png') }}" alt="Bfit Indonesia">
+            <img src="{{ asset('img/logo-bfit.png') }}" alt="Bfit Indonesia">
         </div>
         <nav class="nav-list">
             <ul>
-                <li><a href="http://localhost/bfitgudang/viewBarang/">Barang</a></li>
-                <li><a href="http://localhost/bfitgudang/viewLogMasuk/">Baru / Retur</a></li>
-                <li><a href="http://localhost/bfitgudang/viewLogKeluar/">Keluar</a></li>
-                <li><a href="http://localhost/bfitgudang/login/" class="logout">Logout</a></li>
+                <li><a href="viewBarang">Barang</a></li>
+                <li><a href="viewLogMasuk">Baru / Retur</a></li>
+                <li><a href="viewLogKeluar">Keluar</a></li>
+                <li><a href="login" class="logout">Logout</a></li>
             </ul>
         </nav>
     </header>

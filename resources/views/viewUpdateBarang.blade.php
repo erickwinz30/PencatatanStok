@@ -106,14 +106,14 @@
 <body>
     <header class="navbar-container">
         <div class="logo">
-            <img src="{{ asset('public/img/logo-bfit.png') }}" alt="Bfit Indonesia">
+            <img src="{{ asset('img/logo-bfit.png') }}" alt="Bfit Indonesia">
         </div>
         <nav class="nav-list">
             <ul>
-                <li><a href="http://localhost/bfitgudang/viewBarang/">Barang</a></li>
-                <li><a href="http://localhost/bfitgudang/viewLogMasuk/">Baru / Retur</a></li>
-                <li><a href="http://localhost/bfitgudang/viewLogKeluar/">Keluar</a></li>
-                <li><a href="http://localhost/bfitgudang/login/" class="logout">Logout</a></li>
+                <li><a href="viewBarang">Barang</a></li>
+                <li><a href="viewLogMasuk">Baru / Retur</a></li>
+                <li><a href="viewLogKeluar">Keluar</a></li>
+                <li><a href="login" class="logout">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -133,7 +133,7 @@
                                 <p class="text-white-50 mb-4">Masukkan data barang yang akan diupdate</p>
 
                                 @foreach ($barang as $row)
-                                    <form action="/bfitgudang/viewBarang/updateBarang/edit" method="post">
+                                    <form action="/viewBarang/updateBarang/edit" method="post">
                                         {{ csrf_field() }}
                                         <div class="form-outline form-white mb-4">
                                             <label class="form-label" for="typeEmailX">ID Barang</label>
@@ -145,6 +145,12 @@
                                             <label class="form-label" for="typePasswordX">Nama barang</label>
                                             <input type="input" name='nama_barang'
                                                 class="form-control form-control-lg" value="{{ $row->nama_barang }}" />
+                                        </div>
+
+                                        <div class="form-outline form-white mb-4">
+                                            <label class="form-label" for="typePasswordX">Nama supplier</label>
+                                            <input type="input" name='supplier_barang'
+                                                class="form-control form-control-lg" value="{{ $row->supplier_barang }}" />
                                         </div>
 
                                         <div class="form-outline form-white mb-4">

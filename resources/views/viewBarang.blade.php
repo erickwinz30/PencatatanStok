@@ -90,10 +90,10 @@
     }
 
     main {
-        max-width: 1200px;
+        max-width: 1400px;
         width: 100%;
         margin-inline: auto;
-        padding: 2rem 4rem;
+        padding: 1rem 2rem;
         flex: 1;
 
         display: flex;
@@ -104,7 +104,7 @@
     main .tabelGudang {
         max-width: 1000px;
         width: 100%;
-        padding: 0rem 1rem;
+        padding: 0rem 0rem;
 
         border-radius: 20px;
     }
@@ -118,14 +118,14 @@
 <body>
     <header class="navbar-container">
         <div class="logo">
-            <img src="{{ asset('public/img/logo-bfit.png') }}" alt="Bfit Indonesia">
+            <img src="{{ asset('img/logo-bfit.png') }}" alt="Bfit Indonesia">
         </div>
         <nav class="nav-list">
             <ul>
-                <li><a href="http://localhost/bfitgudang/viewBarang/">Barang</a></li>
-                <li><a href="http://localhost/bfitgudang/viewLogMasuk/">Baru / Retur</a></li>
-                <li><a href="http://localhost/bfitgudang/viewLogKeluar/">Keluar</a></li>
-                <li><a href="http://localhost/bfitgudang/login/" class="logout">Logout</a></li>
+                <li><a href="viewBarang">Barang</a></li>
+                <li><a href="viewLogMasuk">Baru / Retur</a></li>
+                <li><a href="viewLogKeluar">Keluar</a></li>
+                <li><a href="login" class="logout">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -143,9 +143,10 @@
                     <tr>
                         <th scope="col">ID Barang</th>
                         <th scope="col">Nama Barang</th>
+                        <th scope="col">Supplier</th>
                         <th scope="col">Berat Barang</th>
                         <th scope="col">Jumlah</th>
-                        <th scope="col">Reorder Point</th>
+                        <th scope="col">ROP</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -154,6 +155,7 @@
                         <tr>
                             <td>{{ $row->id_barang }}</td>
                             <td>{{ $row->nama_barang }}</td>
+                            <td>{{ $row->supplier_barang }}</td>
                             <td>{{ $row->berat_barang }} kg</td>
                             <td>{{ $row->jumlah_barang }}</td>
                             <td>{{ $row->reorder_point }}</td>
@@ -183,7 +185,28 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-            $('#tabel_barang').DataTable();
+            $('#tabel_barang').DataTable({
+                dom: 'Bfrtip',
+                buttons: [{
+                        extend: 'excel',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5] // Kolom 6 (Action) tidak ikut ter-eksport
+                        }
+                    },
+                    {
+                        extend: 'pdf',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5] // Kolom 6 (Action) tidak ikut ter-eksport
+                        }
+                    },
+                    {
+                        extend: 'print',
+                        exportOptions: {
+                            columns: [0, 1, 2, 3, 4, 5] // Kolom 6 (Action) tidak ikut ter-eksport
+                        }
+                    }
+                ]
+            });
         });
     </script>
 

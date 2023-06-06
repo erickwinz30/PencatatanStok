@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
+Route::get('/', [ControllerBarang::class, 'readBarang'])->middleware('checkRole:gudang');
 Route::get('viewBarang', [ControllerBarang::class, 'readBarang'])->middleware('checkRole:gudang');
 Route::get('viewBarang/tambahBaru', [ControllerBarang::class, 'insertBarangBaru'])->middleware('checkRole:gudang');
 Route::post('viewBarang/tambahBaru/simpan', [ControllerBarang::class, 'tambahBaru'])->middleware('checkRole:gudang');
