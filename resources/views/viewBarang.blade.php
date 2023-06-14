@@ -205,7 +205,7 @@
                             columns: [0, 1, 2, 3, 4, 5] // Kolom 6 (Action) tidak ikut ter-eksport
                         }
                     }
-                ]
+                ],
             });
         });
     </script>

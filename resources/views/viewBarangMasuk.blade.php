@@ -110,10 +110,10 @@
         </div>
         <nav class="nav-list">
             <ul>
-                <li><a href="viewBarang">Barang</a></li>
-                <li><a href="viewLogMasuk">Baru / Retur</a></li>
-                <li><a href="viewLogKeluar">Keluar</a></li>
-                <li><a href="login" class="logout">Logout</a></li>
+                <li><a href="{{ url('viewBarang') }}">Barang</a></li>
+                <li><a href="{{ url('viewLogMasuk') }}">Baru / Retur</a></li>
+                <li><a href="{{ url('viewLogKeluar') }}">Keluar</a></li>
+                <li><a href="{{ url('login') }}" class="logout">Logout</a></li>
             </ul>
         </nav>
     </header>

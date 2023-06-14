@@ -121,10 +121,6 @@ class ModelBarang extends Model
 
     public function simpanBaru($x)
     {
-        $lead_time = $x['lead_time'];
-
-        $lead_time_terlama = $x['lead_time_terlama'];
-
         $barang = DB::table('barang')->insert([
             'id_barang' => $x->id_barang,
             'nama_barang' => $x->nama_barang,

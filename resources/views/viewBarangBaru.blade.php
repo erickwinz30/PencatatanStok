@@ -110,10 +110,10 @@
         </div>
         <nav class="nav-list">
             <ul>
-                <li><a href="viewBarang">Barang</a></li>
-                <li><a href="viewLogMasuk">Baru / Retur</a></li>
-                <li><a href="viewLogKeluar">Keluar</a></li>
-                <li><a href="login" class="logout">Logout</a></li>
+                <li><a href="{{ url('viewBarang') }}">Barang</a></li>
+                <li><a href="{{ url('viewLogMasuk') }}">Baru / Retur</a></li>
+                <li><a href="{{ url('viewLogKeluar') }}">Keluar</a></li>
+                <li><a href="{{ url('login') }}" class="logout">Logout</a></li>
             </ul>
         </nav>
     </header>
@@ -160,19 +160,6 @@
                                         <input type="input" name='lead_time'
                                             class="form-control form-control-lg"/>
                                     </div>
-
-                                    {{-- <div class="form-outline form-white mb-4">
-                                        <label class="form-label" for="typePasswordX">Rata - rata penjualan (satuan
-                                            hari)</label>
-                                        <input type="input" name='demand' class="form-control form-control-lg"/>
-                                    </div> --}}
-
-                                    {{-- <div class="form-outline form-white mb-4">
-                                        <label class="form-label" for="typePasswordX">Penjualan harian
-                                            tertinggi</label>
-                                        <input type="input" name='penjualan_tertinggi'
-                                            class="form-control form-control-lg"/>
-                                    </div> --}}
 
                                     <div class="form-outline form-white mb-4">
                                         <label class="form-label" for="typePasswordX">Lead Time terlama (satuan

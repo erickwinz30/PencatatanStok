@@ -126,7 +126,7 @@
                                     <br>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <a href="http://localhost/bfitgudang/login" class="btn btn-outline-light btn-lg px-4" name="cancel">Cancel</a>
+                                            <a href="login" class="btn btn-outline-light btn-lg px-4" name="cancel">Cancel</a>
                                         </div>
                                         <div class="col-md-6 text-end">
                                             <button class="btn btn-outline-light btn-lg px-4" type="submit" name="kirim" value="kirim">Register</button>
